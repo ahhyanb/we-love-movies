@@ -13,15 +13,15 @@ const addCritic = mapProperties({
   
 
 // Function to update a review
-function update(updatedReview) {
+function updateReview(updatedReview) {
     return knex("reviews")
       .where({ review_id: updatedReview.review_id })
       .update(updatedReview, "*")
       .then((updatedRecords) => updatedRecords[0]); // Return the first updated record
 }
   
-  // Function to get a review with critic information
-function readWithCritic(reviewId) {
+  // Function to get a review with critic information using map-properties
+function readReviewWithCritic(reviewId) {
     return knex("reviews as r")
       .join("critics as c", "r.critic_id", "c.critic_id")
       .select("r.*", "c.*")
@@ -45,15 +45,12 @@ function destroyReview(reviewId) {
         .del();
 }
 
-function updateReview(body) {
-    return knex("reviews").select("*")
-        .update({ body })
-
-}
 
 module.exports = { 
     list,
     listReviewsByMovie,
     destroyReview,
+    updateReview,
+    readReviewWithCritic,
 
 }

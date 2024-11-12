@@ -38,10 +38,8 @@ async function updateReview(req, res, next) {
       ...req.body.data,
       review_id: res.locals.review.review_id, // Ensure review_id is preserved
     };
-  
     // Update the review in the database
     await service.update(updatedReview);
-  
     // Fetch the updated review along with critic information
     const data = await service.readWithCritic(updatedReview.review_id);
     res.json({ data });
