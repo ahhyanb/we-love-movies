@@ -18,9 +18,9 @@ async function listMoviesShowing(req, res, next) {
 async function listMovieById(req, res, next) {
     const { movieId } = req.params;
     const data = await moviesService.listMovieById(movieId);
-    const result = data[0]; // access the first item in the array since the rersponse will be an array
+    
     return data.length
-        ? res.json({ data: result }) // If the movie exists, respond with the data
+        ? res.json({ data: data[0] }) // If the movie exists, respond with the data
         : next({ status: 404, message: `Movie with ID ${movieId} not found.` }); // Otherwise, pass an error to the next handler
 }
 

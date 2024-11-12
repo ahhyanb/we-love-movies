@@ -1,7 +1,6 @@
 const knex = require("../db/connection");
 const reduceProperties = require("../utils/reduce-properties");
 
-
 // Configuration to nest movies under the "movies" key
 const reduceMovies = reduceProperties("theater_id", {
     movie_id: ["movies", null, "movie_id"],
