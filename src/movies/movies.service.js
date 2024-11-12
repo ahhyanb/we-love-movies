@@ -9,7 +9,14 @@ function listMoviesShowing() {
         .where("is_showing",true);
 }
 
+function listMovieById(movieId) {
+    return knex('movies').select("*")
+        .where({ movie_id: movieId });
+}
+
 module.exports = {
     list,
     listMoviesShowing,
+    listMovieById,
+
 };
